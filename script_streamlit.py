@@ -31,7 +31,7 @@ with st.sidebar:
 
 def top_stocks(n=50):
     url = "https://www.nseindia.com/api/equity-stockIndices?index=NIFTY%2050"
-    headers = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0;Win64) AppleWebkit/537.36 (KHTML, like Gecko) Chrome/89.0.4389.82 Safari/537.36"}
+    headers = {"User-Agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36"}
     response = requests.get(url, headers=headers)
     return pd.DataFrame(response.json()["data"])['symbol'].iloc[1:n+1]
 
@@ -147,6 +147,7 @@ if run:
     fig.update_layout(hovermode="x unified")
     
     st.plotly_chart(fig,use_container_width=True)
+    
     
     st.write("Top Stocks Selected:")
     st.write(top_stocks_names)
