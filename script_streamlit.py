@@ -40,7 +40,8 @@ def top_stocks(n=50):
                        "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/103.0.5060.114 Safari/537.36",
                        "Mozilla/5.0 (Linux; Android 12; SM-G990F) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/103.0.5060.114 Mobile Safari/537.36"])
         response = requests.get(url, headers={"User-Agent":user_agent})
-        response_status = response.status_code                        
+        response_status = response.status_code 
+        print(response_status)                       
     return pd.DataFrame(response.json()["data"])['symbol'].iloc[1:n+1]
 
 def stock_history(stock,start_period=None,end_period=None,NS=True):
