@@ -30,19 +30,24 @@ with st.sidebar:
         run = True
 
 
+# def top_stocks(n=50):
+#     url = "https://www.nseindia.com/api/equity-stockIndices?index=NIFTY%2050"
+#     response_status=0
+#     while response_status!=200:
+#         user_agent =  random.choice(["Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)",
+#                        "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/93.0.4577.63 Safari/537.36",
+#                        "Mozilla/5.0 (iPhone; CPU iPhone OS 14_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/14.0 Mobile/15E148 Safari/604.1",
+#                        "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/103.0.5060.114 Safari/537.36",
+#                        "Mozilla/5.0 (Linux; Android 12; SM-G990F) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/103.0.5060.114 Mobile Safari/537.36"])
+#         response = requests.get(url, headers={"User-Agent":user_agent})
+#         response_status = response.status_code 
+#         print(response_status)                       
+#     return pd.DataFrame(response.json()["data"])['symbol'].iloc[1:n+1]
+
+
 def top_stocks(n=50):
-    url = "https://www.nseindia.com/api/equity-stockIndices?index=NIFTY%2050"
-    response_status=0
-    while response_status!=200:
-        user_agent =  random.choice(["Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)",
-                       "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/93.0.4577.63 Safari/537.36",
-                       "Mozilla/5.0 (iPhone; CPU iPhone OS 14_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/14.0 Mobile/15E148 Safari/604.1",
-                       "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/103.0.5060.114 Safari/537.36",
-                       "Mozilla/5.0 (Linux; Android 12; SM-G990F) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/103.0.5060.114 Mobile Safari/537.36"])
-        response = requests.get(url, headers={"User-Agent":user_agent})
-        response_status = response.status_code 
-        print(response_status)                       
-    return pd.DataFrame(response.json()["data"])['symbol'].iloc[1:n+1]
+    return pd.read_csv('https://www1.nseindia.com/content/indices/ind_nifty50list.csv')['Symbol'].iloc[1:n+1]
+
 
 def stock_history(stock,start_period=None,end_period=None,NS=True):
     temp_df = yf.Ticker(f"{stock}.NS") if NS else yf.Ticker(stock)
