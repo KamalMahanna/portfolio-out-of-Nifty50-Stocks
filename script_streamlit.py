@@ -46,7 +46,7 @@ with st.sidebar:
 
 
 def top_stocks(n=50):
-    return pd.read_csv('https://www1.nseindia.com/content/indices/ind_nifty50list.csv')['Symbol'].iloc[1:n+1]
+    return pd.read_csv('https://www.nseindia.com/content/indices/ind_nifty50list.csv')['Symbol'].iloc[1:n+1]
 
 
 def stock_history(stock,start_period=None,end_period=None,NS=True):
