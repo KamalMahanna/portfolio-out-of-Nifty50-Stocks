@@ -32,7 +32,7 @@ with st.sidebar:
 
 def top_stocks(n=50):
     url = "https://en.wikipedia.org/wiki/NIFTY_50"
-    soup = BeautifulSoup(requests.get(url).content)
+    soup = BeautifulSoup(requests.get(url).content,'lxml')
     x=soup.find("table",attrs={"id":"constituents"}).find("tbody").find_all("tr")[1:]
 
     return [i.findAll("td")[1].text for i in x][:n]
